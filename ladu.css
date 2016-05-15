@@ -1,0 +1,9 @@
+body {
+  background-color: #ffcc66;
+}
+
+#div-vorm {
+  background-color: #00cc47;
+  display: inline-block;
+  font-family: "Arial", sans-serif;
+}
