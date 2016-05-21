@@ -31,6 +31,7 @@
           <tr>
             <th>Nimetus</th>
             <th>Kogus</th>
+            <th>Tegevused</th>
             <th></th>
             <th></th>
           </tr>

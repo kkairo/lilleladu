@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       $kogus = intval($_POST['kogus']);
       $result = controller_muuda_toode($id, $kogus);
       break;
-
   }
 
   if($result){
