@@ -1,5 +1,5 @@
 <?php
-
+//tegeleb andmete salmestamise ja laadimisega
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASSWORD", "");
@@ -78,4 +78,24 @@ function model_lisa_kasutaja($kasutajanimi, $parool) {
   $id = mysqli_stmt_insert_id($stmt);
   mysqli_stmt_close($stmt);
   return $id;
+}
+
+function model_vota_kasutaja($kasutajanimi, $parool) {
+  global $l;
+  $query = 'SELECT Id, Parool FROM kasutajad WHERE Kasutajanimi=? LIMIT 1';
+  $stmt = mysqli_prepare($l, $query);
+  //kontrollib kas väärtused klapivad sql lauses
+  if(mysqli_error($l)) {
+    echo mysqli_error($l);
+    exit;
+  }
+  mysqli_stmt_bind_param($stmt, 's', $kasutajanimi);
+  mysqli_stmt_execute($stmt);
+  //seome esimese välja listis muutujaga Id , teise seome muutujaga parool; seome parooli välja muutujaga hash
+  mysqli_stmt_bind_result($stmt, $id, $hash);
+  //ootame ühte rida - kutsume stmt_fetch ühe korra välja; muidu peaks while tsükli tegema
+  mysqli_stmt_fetch($stmt);
+  mysqli_stmt_close($stmt);
+
+return password_verify($parool, $hash) ? $id : false;
 }

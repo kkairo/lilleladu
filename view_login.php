@@ -12,7 +12,6 @@
       <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
 
         <input type="hidden" name="action" value="login">
-        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 
           <table id="table-login">
             <tr>
@@ -30,7 +29,7 @@
           </table>
         <p>
           <button type="submit">Logi sisse</button> või
-          <a href="view_register.php">Registreeri konto</a>
+          <a href="<?= $_SERVER ['PHP_SELF'];?>?view=registreeri">Registreeri konto</a>
         </p>
       </form>
     </div>

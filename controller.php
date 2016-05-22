@@ -1,5 +1,5 @@
 <?php
-
+//tegevuste loogiline osa; mida on vaja teha ja teeb vastavad tegevused
 function controller_lisa_toode($nimetus, $kogus) {
 
   if($nimetus == '' || $kogus < 0){
@@ -25,10 +25,33 @@ function controller_muuda_toode($id, $kogus) {
   return model_muuda_toode($id, $kogus);
 }
 
+function controller_kasutaja () {
+  if(empty ($_SESSION['login'])) {
+    return false;
+  }
+  return $_SESSION['login'];
+}
+
 function controller_registreeri($kasutajanimi, $parool) {
 
   if ($kasutajanimi == '' || $parool == '') {
     return false;
   }
   return model_lisa_kasutaja($kasutajanimi, $parool);
+}
+
+//küsime modelist kas kasutaja andmed on 6iged
+function controller_login($kasutajanimi, $parool) {
+  if($kasutajanimi == '' || $parool == '') {
+    return false;
+  }
+  //küsime modelist kasutaja id; proovime kasutaja andmeid laadida
+  $id = model_vota_kasutaja($kasutajanimi, $parool);
+  //kui id'd ei leia
+  if(!$id) {
+    return false;
+  }
+  //kui id on käes, paneme session_user väärtuseks ja tagastame id
+  $_SESSION['login'] = $id;
+  return $id;
 }

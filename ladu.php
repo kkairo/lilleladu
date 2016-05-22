@@ -1,5 +1,5 @@
 <?php
-
+//otsustab tegevuse ja vaate üle
 require 'model.php';
 
 require 'controller.php';
@@ -32,6 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       $parool = $_POST['parool'];
       $result = controller_registreeri($kasutajanimi, $parool);
       break;
+
+    case 'login':
+      $kasutajanimi = $_POST['kasutajanimi'];
+      $parool = $_POST['parool'];
+      $result = controller_login($kasutajanimi, $parool);
+      break;
   }
 
   if($result){
@@ -48,16 +54,25 @@ if (!empty($_GET['view'])) {
 
   switch ($_GET['view']) {
 
+    case 'login':
+      require 'view_login.php';
+      break;
+
     case 'registreeri':
       require 'view_register.php';
       break;
-
+      
     default:
       header:('Content-type: text/plain; Charset=utf-8');
       echo 'Tundmatu valik!';
       exit;
     }
   } else {
+    //kontrollib kas kasutaja on sisse logitud v mitte; kui pole, siis avab login vaate
+    if (!controller_kasutaja()){
+      header('Location: ' . $_SERVER['PHP_SELF'] . '?view=login');
+      exit;
+    }
     require 'view.php';
 }
 
