@@ -19,7 +19,7 @@
               <td>Kasutajanimi</td>
               <td>
                 <input type="text" name="kasutajanimi" required>
-                </td>
+              </td>
             </tr>
             <tr>
               <td>Parool</td>

@@ -11,7 +11,7 @@ mysqli_query($l, 'SET CHARACTER SET UTF8');
 
 
 
-function model_lisa_toode($nimetus, $kogus){
+function model_lisa_toode($nimetus, $kogus) {
   global $l;
   $query = 'INSERT INTO tooted(Nimetus, Kogus) VALUES (?, ?)';
   $stmt = mysqli_prepare($l, $query);
@@ -30,7 +30,7 @@ function model_lae_tooted(){
   mysqli_stmt_bind_result($stmt, $id, $nimetus, $kogus);
   $rows = array();
 
-  while (mysqli_stmt_fetch($stmt)){
+  while (mysqli_stmt_fetch($stmt)) {
     $rows[] = array(
       'Id' => $id,
       'Nimetus' => $nimetus,
@@ -41,7 +41,7 @@ function model_lae_tooted(){
   return $rows;
 }
 
-function model_kustuta_toode($id){
+function model_kustuta_toode($id) {
   global $l;
   $query = 'DELETE FROM tooted WHERE Id=? LIMIT 1';
   $stmt = mysqli_prepare($l, $query);
@@ -52,7 +52,7 @@ function model_kustuta_toode($id){
   return $delete;
 }
 
-function model_muuda_toode($id, $kogus){
+function model_muuda_toode($id, $kogus) {
   global $l;
   $query = 'UPDATE tooted SET Kogus=? WHERE Id=?';
   $stmt = mysqli_prepare($l, $query);
@@ -60,4 +60,22 @@ function model_muuda_toode($id, $kogus){
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
   return true;
+}
+
+function model_lisa_kasutaja($kasutajanimi, $parool) {
+  global $l;
+  $hash = password_hash($parool, PASSWORD_DEFAULT);
+  $query = 'INSERT INTO kasutajad (Kasutajanimi, Parool)' . 'VALUES (?, ?)';
+  $stmt = mysqli_prepare($l, $query);
+
+  if(mysqli_error($l)) {
+    echo mysqli_error($l);
+    exit;
+  }
+
+  mysqli_stmt_bind_param($stmt, 'ss', $kasutajanimi, $hash);
+  mysqli_stmt_execute($stmt);
+  $id = mysqli_stmt_insert_id($stmt);
+  mysqli_stmt_close($stmt);
+  return $id;
 }
