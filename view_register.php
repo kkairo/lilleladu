@@ -25,7 +25,6 @@
               </td>
             </tr>
           </table>
-
           <p>
             <button type="submit">Registeeri konto</button> või
             <a href="view_login.php">Tagasi</a>

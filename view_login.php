@@ -27,7 +27,7 @@
           </table>
         <p>
           <button type="submit">Logi sisse</button> või
-          <a href="<?= $_SERVER ['PHP_SELF'];?>?view=registreeri">Registreeri konto</a>
+          <a href="<?= $_SERVER['PHP_SELF'];?>?view=registreeri">Registreeri konto</a>
         </p>
       </form>
     </div>

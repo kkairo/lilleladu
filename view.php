@@ -44,11 +44,13 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach (model_lae_tooted() as $rida): ?>
-          <tr>
+          <?php
+foreach (model_lae_tooted() as $rida):
+?>
+         <tr>
             <td>
               <?= $rida['Nimetus']; ?>
-            </td>
+           </td>
             <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
               <input type="hidden" name="action" value="muuda">
               <input type="hidden" name="id" value="<?= $rida['Id']; ?>">
@@ -67,8 +69,10 @@
               </form>
             </td>
           </tr>
-        <?php endforeach; ?>
-        </tbody>
+        <?php
+endforeach;
+?>
+       </tbody>
       </table>
       </div>
     </div>

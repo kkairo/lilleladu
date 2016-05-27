@@ -1,5 +1,5 @@
 <?php
-//tegeleb andmete salmestamise ja laadimisega
+
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASSWORD", "");
@@ -89,7 +89,7 @@ function model_vota_kasutaja($kasutajanimi, $parool) {
     echo mysqli_error($l);
     exit;
   }
-  
+
   mysqli_stmt_bind_param($stmt, 's', $kasutajanimi);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_bind_result($stmt, $id, $hash);
