@@ -3,16 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Sisselogimine</title>
+    <link rel="stylesheet" href="ladu.css" type="text/css" charset="utf-8">
   </head>
   <body>
+    <div id="div-lehe_sisu">
     <h1>Logi sisse</h1>
-
     <div id="div-logimine">
-
       <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
-
         <input type="hidden" name="action" value="login">
-
           <table id="table-login">
             <tr>
               <td>Kasutajanimi</td>
@@ -33,5 +31,6 @@
         </p>
       </form>
     </div>
+  </div>
   </body>
 </html>

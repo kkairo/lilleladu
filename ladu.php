@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-//otsustab tegevuse ja vaate üle
+
 require 'model.php';
 
 require 'controller.php';
@@ -41,6 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       $parool = $_POST['parool'];
       $result = controller_login($kasutajanimi, $parool);
       break;
+
+    case 'logout':
+      $result = controller_logout();
+      break;
   }
 
   if($result){
@@ -74,7 +78,6 @@ if (!empty($_GET['view'])) {
   } else {
     //kontrollib kas kasutaja on sisse logitud v6i mitte; kui pole, siis avab login vaate
     if (!controller_kasutaja()){
-      exit;
       header('Location: ' . $_SERVER['PHP_SELF'] . '?view=login');
       exit;
     }

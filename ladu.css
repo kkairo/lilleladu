@@ -1,9 +1,18 @@
 body {
   background-color: #ffcc66;
+  font-family: "Courier New", sans-serif;
 }
 
 #div-vorm {
-  background-color: #00cc47;
+  background-color: #ffb3b3;
   display: inline-block;
-  font-family: "Arial", sans-serif;
+  padding: 20px;
+  font-family: "Courier New", sans-serif;
+  margin-bottom: 50px;
+  border-radius: 10px;
+}
+
+#div-lehe_sisu{
+  margin-left: 20%;
+  margin-right: 20%;
 }

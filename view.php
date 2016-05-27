@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="ladu.css" type="text/css" charset="utf-8">
   </head>
   <body>
+    <div id="div-lehe_sisu">
+    <div style="float: right;">
+        <form method="post"  action="<?= $_SERVER['PHP_SELF']; ?>">
+            <input type="hidden" name="action" value="logout">
+            <button type="submit">Logi välja</button>
+        </form>
+    </div>
     <h1>Lilleladu</h1>
     <div id="div-vorm">
       <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
@@ -20,7 +27,7 @@
             <td><input type="number" name="toote_kogus"></td>
           </tr>
           <tr>
-            <td><button type="submit">Salvesta</button></td>
+            <td><button type="submit"id="nupp-salvesta">Salvesta</button></td>
           </tr>
         </table>
       </form>
@@ -46,7 +53,7 @@
               <input type="hidden" name="action" value="muuda">
               <input type="hidden" name="id" value="<?= $rida['Id']; ?>">
               <td>
-                <input type="number" name="kogus" value="<?= $rida['Kogus']; ?>">
+                <input class="tootekogus" type="number" name="kogus" value="<?= $rida['Kogus']; ?>">
               </td>
               <td>
                 <button type="submit">Muuda</button>
@@ -63,6 +70,8 @@
         <?php endforeach; ?>
         </tbody>
       </table>
+      </div>
     </div>
+  <script src="ladu.js"></script>
   </body>
 </html>
