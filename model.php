@@ -65,7 +65,7 @@ function model_muuda_toode($id, $kogus) {
 function model_lisa_kasutaja($kasutajanimi, $parool) {
   global $l;
   $hash = password_hash($parool, PASSWORD_DEFAULT);
-  $query = 'INSERT INTO kasutajad (Kasutajanimi, Parool)' . 'VALUES (?, ?)';
+  $query = 'INSERT INTO kasutajad (Kasutajanimi, Parool) VALUES (?, ?)';
   $stmt = mysqli_prepare($l, $query);
 
   if(mysqli_error($l)) {
@@ -79,7 +79,7 @@ function model_lisa_kasutaja($kasutajanimi, $parool) {
   mysqli_stmt_close($stmt);
   return $id;
 }
-
+// teeb kasutaja kontrolli
 function model_vota_kasutaja($kasutajanimi, $parool) {
   global $l;
   $query = 'SELECT Id, Parool FROM kasutajad WHERE Kasutajanimi=? LIMIT 1';

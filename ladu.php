@@ -1,8 +1,11 @@
 <?php
+
+session_start();
 //otsustab tegevuse ja vaate üle
 require 'model.php';
 
 require 'controller.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -41,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   }
 
   if($result){
+
     header('Location: ' .$_SERVER['PHP_SELF']);
 
   } else {
@@ -61,15 +65,16 @@ if (!empty($_GET['view'])) {
     case 'registreeri':
       require 'view_register.php';
       break;
-      
+
     default:
       header:('Content-type: text/plain; Charset=utf-8');
       echo 'Tundmatu valik!';
       exit;
     }
   } else {
-    //kontrollib kas kasutaja on sisse logitud v mitte; kui pole, siis avab login vaate
+    //kontrollib kas kasutaja on sisse logitud v6i mitte; kui pole, siis avab login vaate
     if (!controller_kasutaja()){
+      exit;
       header('Location: ' . $_SERVER['PHP_SELF'] . '?view=login');
       exit;
     }
